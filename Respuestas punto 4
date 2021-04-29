@@ -1,0 +1,48 @@
+
+
+
+Como usuario quiero poder ver que encuestas respondí.
+
+Agregaría una columna más a la tabla usuario para registrar los id de las encuestas que el usuario responda (id_encuesta).
+
+(usuario/id_encuesta, 'GET', 'AdminApiController',  'getEncuestasRespondidas');
+
+Como usuario quiero poder cambiar la respuesta de una encuesta
+
+Primero me aseguraría de que el usuario que quiera cambiar la respuesta sea el mismo que el que 
+la creó (Tienen que coincidir respusta.id_usuario=usuario.id), después mediante un UPDATE en el respuestaModel 
+permitiría que el usuario cambie la respuesta (controlando que la otra respuesta que elija exista).
+
+(encuesta:ID/respuesta/:ID, 'PUT', 'AdminApiController',  'ModifRespuesta');
+
+Como usuario quiero poder ver las opciones de una encuesta
+
+Traería de opcionModel todas las opciones que tengan el id de la encuesta (opcion.id_encuesta=encuesta.id) 
+
+(encuesta/:ID/opcion, 'GET', 'AdminApiController',  'getTodasLasOpciones');
+
+Como usuario quiero poder la respuesta a una encuesta determinada
+
+Buscaría por id la encuesta que quiero responder y la opcion que quiera elegir y una vez obtenida ambas, envió la respuesta
+(encuesta/:ID/opcion/, 'POST', 'AdminApiController',  'agregarRespuesta');
+
+Como usuario quiero poder buscar encuestas por título
+
+Generaría un formulario que cuando el usuario quiera buscar una encuesta ponga solamente el título de ésta y 
+lo encuentre facilmente
+
+(encuesta/:ID, 'GET', 'AdminApiController',  'buscarEncuestaXTitulo');
+
+Como usuario quiero poder borrar una respuesta
+
+Mediante un formulario el usuario ingesará el id de la encuesta que votó y si ésta existe se borrará
+
+usuario/encuesta/:ID/respuesta 
+(usuario/encuesta/:ID/respuesta , 'DELETE', 'AdminApiController',  'borrarRespuesta');
+
+Como usuario quiero poder responder una encuesta 
+
+Con un formulario ingresaría el id de la encuesta que quiero responder y a partir de ahi crearía la respuesta
+
+(encuesta/:ID/respuesta, 'POST', 'AdminApiController',  'buscarEncuestaXTitulo');
+
